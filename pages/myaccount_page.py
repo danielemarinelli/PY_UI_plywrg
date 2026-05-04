@@ -6,6 +6,9 @@
 
 from playwright.sync_api import Page
 
+from pages.logout_page import LogoutPage
+
+
 class MyAccountPage:
     def __init__(self, page: Page):  # all locators will be inside the constructor
         """

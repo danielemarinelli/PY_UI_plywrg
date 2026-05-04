@@ -14,7 +14,7 @@ class LogoutPage:
         self.logout_msg_label = page.locator("#content p").nth(0)
         self.continue_btn = page.locator(".btn.btn-primary")
 
-def get_logout_heading_msg(self):
+    def get_logout_heading_msg(self):
         """
         Returns the locator for the 'Logout' page heading.
         Can be used in test assertions to verify page visibility.
@@ -27,18 +27,18 @@ def get_logout_heading_msg(self):
 
 
 
-def click_continue(self):
+    def click_continue(self):
         """
         Click the 'Continue' button after logging out.
         This typically redirects the user back to the Home Page.
         """
         try:
-            self.btn_continue.click()
+            self.continue_btn.click()
         except Exception as e:
             print(f" Exception while clicking 'Continue' button: {e}")
             raise
 
-def get_continue_button(self):
+    def get_continue_button(self):
         """
         Return the Continue button locator.
         Useful for checking its visibility or state in test assertions.
@@ -47,7 +47,7 @@ def get_continue_button(self):
             expect(logout_page.get_continue_button()).to_be_visible()
         """
         try:
-            return self.btn_continue
+            return self.continue_btn
         except Exception as e:
             print(f" Exception while fetching 'Continue' button locator: {e}")
             return None
