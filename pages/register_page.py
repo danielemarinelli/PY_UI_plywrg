@@ -1,6 +1,6 @@
 from playwright.sync_api import Page
 
-class HomePage:
+class RegisterPage:
     def __init__(self, page: Page):  # all locators will be inside the constructor
         self.page = page
         self.first_name_field = page.locator("#input-firstname")
