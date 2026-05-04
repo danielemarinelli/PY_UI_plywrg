@@ -55,17 +55,17 @@ def test_user_registration(page):
     password = random_data.get_password()
 
     # --- Step 4: Fill Registration Form ---
-    registration_page.set_first_name(first_name)
-    registration_page.set_last_name(last_name)
-    registration_page.set_email(email)
-    registration_page.set_telephone(phone)
-    registration_page.set_password(password)
-    registration_page.set_confirm_password(password)
+    registration_page.insert_firstname(first_name)
+    registration_page.insert_lastname(last_name)
+    registration_page.insert_email(email)
+    registration_page.insert_telephone(phone)
+    registration_page.insert_password(password)
+    registration_page.insert_password_confirmation(password)
 
     # --- Step 5: Accept Privacy Policy and Submit ---
-    registration_page.set_privacy_policy()
-    registration_page.click_continue()
+    registration_page.agree_policy()
+    registration_page.click_continue_btn()
 
     # --- Step 6: Verify Account Creation Confirmation ---
-    confirmation_msg = registration_page.get_confirmation_msg()
+    confirmation_msg = registration_page.verify_msg_displayed()
     expect(confirmation_msg).to_have_text("Your Account Has Been Created!")

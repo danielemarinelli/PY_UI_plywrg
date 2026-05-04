@@ -17,51 +17,51 @@ class RegisterPage:
     # ===== Action Methods =====
     # Each method represents a user interaction on the page
 
-    def insert_firstname(self):
+    def insert_firstname(self, name):
         """Insert first name"""
         try:
-            self.first_name_field.fill("Daniel")
+            self.first_name_field.fill(name)
         except Exception as e:
             print(f" Exception while filling 'first name field': {e}")
             raise
 
 
-    def insert_lastname(self):
+    def insert_lastname(self, last_name):
         """Insert last name"""
         try:
-            self.last_name_field.fill("Mari")
+            self.last_name_field.fill(last_name)
         except Exception as e:
             print(f" Exception while filling 'last name': {e}")
             raise
 
-    def insert_email(self):
+    def insert_email(self, email):
         """Insert Email"""
         try:
-            self.email_field.fill("dm@email.it")
+            self.email_field.fill(email)
         except Exception as e:
             print(f" Exception while filling 'Email': {e}")
             raise
 
-    def insert_telephone(self):
+    def insert_telephone(self,phone_number):
         """Insert Telephone"""
         try:
-            self.phone_field.fill("34790433")
+            self.phone_field.fill(phone_number)
         except Exception as e:
             print(f" Exception while filling 'telephone': {e}")
             raise
 
-    def insert_password(self):
+    def insert_password(self,pw):
         """Insert password"""
         try:
-            self.pw_field.fill("testingqa@123")
+            self.pw_field.fill(pw)
         except Exception as e:
             print(f" Exception while filling 'password': {e}")
             raise
 
-    def insert_password_confirmation(self):
+    def insert_password_confirmation(self,pw):
         """Insert password second time"""
         try:
-            self.pw_confirm_field.fill("testingqa@123")
+            self.pw_confirm_field.fill(pw)
         except Exception as e:
             print(f" Exception while filling 'confirmation password': {e}")
             raise
