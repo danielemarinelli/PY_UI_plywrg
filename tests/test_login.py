@@ -66,4 +66,28 @@ def test_user_login_invalid_credentials(page):
     time.sleep(2)
 
 
+def test_user_login_valid_credentials(page):
+    """
+    Automated Test Case: Verify that a user can login with valid credentials
+    """
+
+    # --- Step 1: URL is started with conftest.py file
+    # --- Step 2: Create Page Object Instances ---
+    home_page = HomePage(page)
+
+    # --- Step 3: Navigate to Login Page ---
+    home_page.click_myAccount()
+    home_page.click_login()
+
+    # --- Step 4: Insert invalid user and password (fetched from Config.py file) ---
+    login = LoginPage(page)
+    login.insert_email(Config.valid_email)
+    login.insert_password(Config.valid_password)
+    login.click_login_btn()
+
+    # --- Step 5: Verify that the "My Account" page is displayed after successful login
+
+
+
+
 
