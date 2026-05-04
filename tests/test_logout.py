@@ -55,15 +55,19 @@ def test_user_logout(page):
     # --- Step 6: Click the Logout button
     # Wait for the page to load completely after login
     time.sleep(3)
+    my_acc.click_logout()
     lo = logout.get_logout_heading_msg()
 
     # --- Step 7: Validation
+    time.sleep(1)
     expect(lo).to_be_visible(timeout=2000)
     expect(lo).to_have_text("You have been logged off your account. It is now safe to leave the computer.")
-    expect(lo.get_continue_button()).to_be_visible()
+    expect(logout.get_continue_button()).to_be_visible()
 
     # --- Step 8: Click on 'Continue' button
-    lo.click_continue()
+
+    logout.click_continue()
+    time.sleep(1)
 
 
 
