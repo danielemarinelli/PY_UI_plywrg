@@ -1,0 +1,3 @@
+testName,email,password,expected
+Valid login,dannymcm@ibm.com,testing010,success
+Invalid login,abcxyz99@xyz.com,99abcxyx,failure
