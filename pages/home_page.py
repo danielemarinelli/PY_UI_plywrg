@@ -36,3 +36,27 @@ class HomePage:
         except Exception as e:
             print(f" Exception while clicking 'Login': {e}")
             raise
+
+    def get_home_page_title(self):
+        """Return the title of the Home Page."""
+        title = self.page.title()
+        return title
+
+    def enter_product_name(self, product_name):
+        """Enter the product name into the search input box."""
+        try:
+            self.search_field.fill(product_name)
+        except Exception as e:
+            print(f" Exception while entering product name '{product_name}': {e}")
+            raise
+
+    def click_search(self):
+        """Click on the search button to initiate the product search."""
+        try:
+            self.btn_search.click()
+        except Exception as e:
+            print(f" Exception while clicking 'Search' button: {e}")
+            raise
+
+
+
