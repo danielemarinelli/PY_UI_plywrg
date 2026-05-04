@@ -40,7 +40,7 @@ class LoginPage:
     def warning(self):
         """Warn the user if invalid credentials"""
         try:
-            return self.warning_msg
+            return self.warning_msg   #returning the locator
         except Exception as e:
             print(f" Exception while fetching 'Warning message': {e}")
             raise

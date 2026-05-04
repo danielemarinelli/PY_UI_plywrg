@@ -155,7 +155,6 @@ def page(request, browser_context):
 
     print(f"[RESULT] Test '{test_name}' result: {'[FAIL]' if test_failed else '[PASS]'}")
 
-    from pathlib import Path
     project_root = Path(__file__).parent
 
     # Save and attach trace
