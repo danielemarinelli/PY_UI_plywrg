@@ -87,8 +87,8 @@ class RegisterPage:
         """Register Account must be displayed"""
         try:
             msg = self.register_displayed.inner_text()
-            print(msg)
-            return msg
+            print("===>", msg)
+            return self.register_displayed    # return the locator where we can do verification
         except Exception as e:
             print(f" Exception while checking 'displayed label': {e}")
             raise

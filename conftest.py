@@ -155,9 +155,12 @@ def page(request, browser_context):
 
     print(f"[RESULT] Test '{test_name}' result: {'[FAIL]' if test_failed else '[PASS]'}")
 
+    from pathlib import Path
+    project_root = Path(__file__).parent
+
     # Save and attach trace
     if tracing_option in ["on", "retain-on-failure"]:
-        trace_path = f"reports/traces/{test_name}_trace.zip"
+        trace_path = f"{project_root}/reports/traces/{test_name}_trace.zip"
         browser_context.tracing.stop(path=trace_path)
         print(f"[SAVE] Trace saved: {trace_path}")
 
@@ -173,7 +176,7 @@ def page(request, browser_context):
 
     # Take screenshot if test failed
     if test_failed and screenshot_option in ["on", "only-on-failure"]:
-        screenshot_path = f"reports/screenshots/{test_name}.png"
+        screenshot_path = f"{project_root}/reports/screenshots/{test_name}.png"
         page.screenshot(path=screenshot_path)
         print(f"[SAVE] Screenshot saved: {screenshot_path}")
 

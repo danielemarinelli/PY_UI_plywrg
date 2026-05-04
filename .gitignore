@@ -3,3 +3,7 @@
 .idea/modules.xml
 .idea/vcs.xml
 .idea/.gitignore
+__pycache__/
+pages/__pycache__/
+tests/__pycache__/
+utilities/__pycache__/
