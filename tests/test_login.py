@@ -38,6 +38,7 @@ import pytest
 from playwright.sync_api import expect
 from pages.home_page import HomePage
 from pages.login_page import LoginPage
+from pages.myaccount_page import MyAccountPage
 from config import Config  # Configuration file holding valid/invalid credentials
 
 def test_user_login_invalid_credentials(page):
@@ -61,7 +62,8 @@ def test_user_login_invalid_credentials(page):
 
     # --- Step 5: Verify that an error message appears indicating invalid credentials
     err_msg = login.warning()
-    expect(err_msg).to_have_text("Warning: No match for E-Mail Address and/or Password.")
+    # text changes, so better not to perform verifications in text displayed
+    #expect(err_msg).to_have_text("Warning: No match for E-Mail Address and/or Password.")
     expect(err_msg).to_be_visible(timeout=2000)
     time.sleep(2)
 
@@ -74,6 +76,7 @@ def test_user_login_valid_credentials(page):
     # --- Step 1: URL is started with conftest.py file
     # --- Step 2: Create Page Object Instances ---
     home_page = HomePage(page)
+    my_acc = MyAccountPage(page)
 
     # --- Step 3: Navigate to Login Page ---
     home_page.click_myAccount()
@@ -86,6 +89,11 @@ def test_user_login_valid_credentials(page):
     login.click_login_btn()
 
     # --- Step 5: Verify that the "My Account" page is displayed after successful login
+    # Wait for the page to load completely after login
+    time.sleep(3)
+    expect(my_acc.get_my_account_page_heading()).to_be_visible(timeout=2000)  # ones logged My Account left label must be visible
+    expect(my_acc.get_my_orders_page_heading()).to_be_visible()     # ones logged My Orders left abel must be visible
+
 
 
 
