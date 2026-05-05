@@ -6,7 +6,7 @@
 # from the test logic for better reusability and maintenance.
 
 from playwright.sync_api import Page, expect
-#from pages.shopping_cart_page import ShoppingCartPage  # Adjust path as per your folder structure
+from pages.shopping_cart_page import ShoppingCartPage  # Adjust path as per your folder structure
 
 
 class ProductPage:
@@ -23,9 +23,10 @@ class ProductPage:
         # Using CSS selectors to identify page elements
         self.txt_quantity = page.locator('input[name="quantity"]')
         self.btn_add_to_cart = page.locator('#button-cart')
-        self.cnf_msg = page.locator('.alert.alert-success.alert-dismissible')
-        self.btn_items = page.locator('#cart')
-        self.lnk_view_cart = page.locator('strong:has-text("View Cart")')
+        self.confirmation_msg = page.locator('.alert.alert-success.alert-dismissible')
+        self.btn_items = page.locator('#cart')    # black button on the top
+        # Build-in playwright locator:
+        self.lnk_view_cart = page.get_by_text("View Cart")
 
     # ===== Quantity Methods =====
 
@@ -64,7 +65,7 @@ class ProductPage:
             expect(product_page.get_confirmation_message()).to_be_visible()
         """
         try:
-            return self.cnf_msg
+            return self.confirmation_msg
         except Exception as e:
             print(f"Confirmation message not found: {e}")
             return None
@@ -73,7 +74,7 @@ class ProductPage:
 
     def click_items_to_navigate_to_cart(self):
         """
-        Click the cart icon (usually at the top-right corner)
+        Click the cart icon (on the top-right corner)
         to open the cart dropdown or popup.
         """
         try:
@@ -92,7 +93,7 @@ class ProductPage:
         """
         try:
             self.lnk_view_cart.click()
-            return #ShoppingCartPage(self.page)
+            return ShoppingCartPage(self.page)
         except Exception as e:
             print(f"Error while clicking 'View Cart': {e}")
             raise
