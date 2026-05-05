@@ -30,7 +30,8 @@ from pages.myaccount_page import MyAccountPage
 from pages.logout_page import LogoutPage
 from config import Config  # Configuration file holding valid/invalid credentials
 
-
+# these custom markers are needed for grouping and are present in the pytest.ini file
+@pytest.mark.regression
 def test_user_logout(page):
     """
     Automated Test Case: Verify that a user can log out

@@ -41,6 +41,8 @@ from pages.login_page import LoginPage
 from pages.myaccount_page import MyAccountPage
 from config import Config  # Configuration file holding valid/invalid credentials
 
+# these custom markers are needed for grouping and are present in the pytest.ini file
+@pytest.mark.sanity
 def test_user_login_invalid_credentials(page):
     """
     Automated Test Case: Verify that a user can't login with an invalid credentials
@@ -67,7 +69,8 @@ def test_user_login_invalid_credentials(page):
     expect(err_msg).to_be_visible(timeout=2000)
     time.sleep(2)
 
-
+# these custom markers are needed for grouping and are present in the pytest.ini file
+@pytest.mark.regression
 def test_user_login_valid_credentials(page):
     """
     Automated Test Case: Verify that a user can login with valid credentials

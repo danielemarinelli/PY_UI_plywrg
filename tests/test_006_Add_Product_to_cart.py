@@ -27,7 +27,7 @@ from pages.home_page import HomePage
 from pages.product_search_page import ProductSearchPage
 from config import Config
 
-
+# these custom markers are needed for grouping and are present in the pytest.ini file
 @pytest.mark.regression
 def test_add_product_to_cart(page):
     """

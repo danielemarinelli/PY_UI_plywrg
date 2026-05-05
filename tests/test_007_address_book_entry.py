@@ -60,7 +60,8 @@ from pages.login_page import LoginPage
 from pages.myaccount_page import MyAccountPage
 from config import Config  # Configuration file holding valid/invalid credentials
 
-
+# these custom markers are needed for grouping and are present in the pytest.ini file
+@pytest.mark.sanity
 def test_user_edit_address_book(page):
     """
     Automated Test Case: Verify that a user can edit address book entry
@@ -104,7 +105,8 @@ def test_user_edit_address_book(page):
     time.sleep(3)
 
 
-
+# these custom markers are needed for grouping and are present in the pytest.ini file
+@pytest.mark.regression
 def test_user_add_address_book_and_deletes_it(page):
     """
     Automated Test Case: Verify that a user can add address book entry and delete it

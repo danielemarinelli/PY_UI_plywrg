@@ -29,7 +29,7 @@ from pages.home_page import HomePage
 from pages.register_page import RegisterPage
 from utilities.random_data_util import RandomDataUtil
 
-
+# these custom markers are needed for grouping and are present in the pytest.ini file
 @pytest.mark.sanity
 @pytest.mark.regression
 def test_user_registration(page):

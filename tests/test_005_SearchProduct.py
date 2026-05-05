@@ -24,6 +24,8 @@ from pages.product_search_page import ProductSearchPage
 from config import Config
 from playwright.sync_api import expect
 
+# these custom markers are needed for grouping and are present in the pytest.ini file
+@pytest.mark.regression
 def test_search_product(page):
     home_page = HomePage(page)
     prod_search = ProductSearchPage(page)
