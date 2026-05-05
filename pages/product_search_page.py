@@ -11,7 +11,21 @@ class ProductSearchPage:
         self.page = page
         self.all_products = page.locator(".caption a")  # List of all product links shown in the search results
         self.search_btn_ = page.locator("#button-search")
+        # Header that appears on the search results page
+        self.search_page_header = page.locator("#content h1", has_text="Search -")
 
+        # ===== Page Header =====
+
+    def get_search_results_page_header(self):
+        """
+        Returns the header element of the search results page, if it exists.
+        Useful for verifying that the user is on the correct page.
+        """
+        try:
+            return self.search_page_header
+        except Exception as e:
+            print(f"Error fetching search results page header: {e}")
+            return None
 
     def search_button_visible(self):
         """blu search button on the left must be displayed on the search page"""
