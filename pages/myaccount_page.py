@@ -22,6 +22,18 @@ class MyAccountPage:
         self.myAccount_label = page.locator("h2:has-text('My Account')")
         self.myOrders_label = page.get_by_text("My Orders")
         self.logout_btn = page.get_by_text("Logout").nth(1)
+        self.address_book_entry = page.locator("a:has-text('Modify your address book entries')")
+        # locators to perform 'Edit Address' action
+        self.first_name = page.locator("#input-firstname")
+        self.last_name = page.locator("#input-lastname")
+        self.address1 = page.locator("#input-address-1")
+        self.city = page.locator("#input-city")
+        self.country = page.locator("#input-country")
+        self.region = page.locator("#input-zone")
+        self.continue_btn = page.locator("input[type='submit']")
+        self.confirmation_msg = page.locator("#account-address").locator("div").nth(0)
+        self.delete_address_book_entry = page.locator("a:has-text('Delete')")
+
 
         # ===== Page Validation Methods =====
 
@@ -63,3 +75,48 @@ class MyAccountPage:
         except Exception as e:
             print(f"Unable to click Logout link: {e}")
             raise e  # Re-raise the exception to fail the test intentionally
+
+# ===== Insert Address Book Action =====
+
+    """ Fill all the mandatory fields for Book Address"""
+    def click_address_book(self):
+        try:
+            self.address_book_entry.click()
+        except Exception as e:
+            print(f"Unable to click Address Book link: {e}")
+            raise e
+
+    def insert_all_address_needed(self):
+        try:
+            self.first_name.fill("Phil")
+            self.last_name.fill("Simpson")
+            self.address1.fill("123 Main Street")
+            self.city.fill("Roma")
+            self.country.select_option("Italy")
+            self.region.select_option("Pesaro e Urbino")
+        except Exception as e:
+            print(f"Unable to fill the Address Book fields: {e}")
+            raise e
+
+
+    def click_continue_btn(self):
+        try:
+            self.continue_btn.click()
+        except Exception as e:
+            print(f"Unable to click Continue button: {e}")
+            raise e
+
+    def get_confirmation_msg_for_address_book(self):
+        try:
+            return self.confirmation_msg
+        except Exception as e:
+            print(f"Unable to get confirmation message: {e}")
+            raise e
+
+    def click_delete_address_btn(self):
+        try:
+            self.delete_address_book_entry.click()
+        except Exception as e:
+            print(f"Unable to click Delete button: {e}")
+            raise e
+
