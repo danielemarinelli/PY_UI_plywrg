@@ -28,11 +28,14 @@ class MyAccountPage:
         self.last_name = page.locator("#input-lastname")
         self.address1 = page.locator("#input-address-1")
         self.city = page.locator("#input-city")
+        self.post_code = page.locator("#input-postcode")
         self.country = page.locator("#input-country")
         self.region = page.locator("#input-zone")
         self.continue_btn = page.locator("input[type='submit']")
         self.confirmation_msg = page.locator("#account-address").locator("div").nth(0)
-        self.delete_address_book_entry = page.locator("a:has-text('Delete')")
+        self.edit_address_book_entry = page.locator(":text-is('Edit')")
+        self.delete_address_book_entry = page.locator("a:has-text('Delete')").nth(1)
+        self.new_address_book_btn = page.get_by_text("New Address")
 
 
         # ===== Page Validation Methods =====
@@ -86,14 +89,20 @@ class MyAccountPage:
             print(f"Unable to click Address Book link: {e}")
             raise e
 
-    def insert_all_address_needed(self):
+    def insert_all_info_needed(self,fname,lname,address,city,zipcode,country,region):
         try:
-            self.first_name.fill("Phil")
-            self.last_name.fill("Simpson")
-            self.address1.fill("123 Main Street")
-            self.city.fill("Roma")
-            self.country.select_option("Italy")
-            self.region.select_option("Pesaro e Urbino")
+            self.first_name.fill("")  # clear field
+            self.first_name.fill(fname)
+            self.last_name.fill("")  # clear field
+            self.last_name.fill(lname)
+            self.address1.fill("")  # clear field
+            self.address1.fill(address)
+            self.city.fill("")  # clear field
+            self.city.fill(city)
+            self.post_code.fill("")  # clear field
+            self.post_code.fill(zipcode)
+            self.country.select_option(label=country)
+            self.region.select_option(label=region)
         except Exception as e:
             print(f"Unable to fill the Address Book fields: {e}")
             raise e
@@ -113,6 +122,14 @@ class MyAccountPage:
             print(f"Unable to get confirmation message: {e}")
             raise e
 
+    def click_edit_address_btn(self):
+        try:
+            self.edit_address_book_entry.click()
+        except Exception as e:
+            print(f"Unable to click Edit button: {e}")
+            raise e
+
+
     def click_delete_address_btn(self):
         try:
             self.delete_address_book_entry.click()
@@ -120,3 +137,10 @@ class MyAccountPage:
             print(f"Unable to click Delete button: {e}")
             raise e
 
+
+    def click_new_address_btn(self):
+        try:
+            self.new_address_book_btn.click()
+        except Exception as e:
+            print(f"Unable to click New Address button: {e}")
+            raise e
