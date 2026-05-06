@@ -13,6 +13,10 @@ class ProductSearchPage:
         self.search_btn_ = page.locator("#button-search")
         # Header that appears on the search results page
         self.search_page_header = page.locator("#content h1", has_text="Search -")
+        self.heart_icon_for_wish_list = page.locator(".product-thumb i.fa.fa-heart")
+        self.confirmation_msg_wish_list_add = page.locator("div.alert.alert-success.alert-dismissible")
+        self.myAccount_link_bar = page.locator(".hidden-xs").nth(2)
+        self.myAccount_dropdown = page.locator(".dropdown-menu a").nth(0)
 
         # ===== Page Header =====
 
@@ -90,3 +94,48 @@ class ProductSearchPage:
         except Exception as e:
             print(f"Error while getting product count: {e}")
             return None
+
+    def product_in_wish_list(self, prod):
+        """
+        Selects a product from the search results by its name and navigates to the Product Page.
+        param  --> product_name: Name of the product to insert in the wish list
+        """
+
+        try:
+            count = self.all_products.count()
+            for i in range(count):
+                product = self.all_products.nth(i)
+                title = product.text_content()
+                if title and title.strip() == prod:
+                    self.heart_icon_for_wish_list.nth(i).click()  # click on the heart icon of the product selected
+            print(f"Product not found: {prod}")
+        except Exception as e:
+            print(f"Error while selecting product: {e}")
+
+
+    def get_confirmation_msg_wish_list(self):
+        """
+        Returns the confirmation messages found in the search results in form of locator , to do validations.
+        :return:
+        """
+        try:
+            return self.confirmation_msg_wish_list_add
+        except Exception as e:
+            print(f"Error while getting confirmation message list: {e}")
+            return None
+
+
+    def click_myAccount_link(self):
+        try:
+            self.myAccount_link_bar.click()
+        except Exception as e:
+            print(f"Unable to click My Account link: {e}")
+            raise e
+
+
+    def click_myAccount_dropdown(self):
+        try:
+            self.myAccount_dropdown.click()
+        except Exception as e:
+            print(f"Unable to click My Account dropdown: {e}")
+            raise e

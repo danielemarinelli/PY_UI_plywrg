@@ -3,6 +3,7 @@ class Config:
     valid_password="testing010"
     invalid_email="tester123@qa.com"
     invalid_password="test@123xyz"
+    #=========================
     product_name = "Nikon D300"
     product_quantity = "1"
     total_price = "$98.00"
@@ -21,4 +22,7 @@ class Config:
     zipcode1 = "40015"
     country1 = "United States"
     region1 = "Ohio"
-
+    # =========================
+    wish_list_product_search = "ipod"
+    wish_list_product1="iPod Touch"
+    wish_list_product2 = "iPod Classic"
