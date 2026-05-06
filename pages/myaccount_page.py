@@ -7,6 +7,7 @@
 from playwright.sync_api import Page
 
 from pages.logout_page import LogoutPage
+from pages.wish_list_page import WishListPage
 
 
 class MyAccountPage:
@@ -36,7 +37,7 @@ class MyAccountPage:
         self.edit_address_book_entry = page.locator(":text-is('Edit')")
         self.delete_address_book_entry = page.locator("a:has-text('Delete')").nth(1)
         self.new_address_book_btn = page.get_by_text("New Address")
-
+        self.all_right_items = page.locator(".list-group a")  # all the 13 items in the right column
 
         # ===== Page Validation Methods =====
 
@@ -144,3 +145,22 @@ class MyAccountPage:
         except Exception as e:
             print(f"Unable to click New Address button: {e}")
             raise e
+
+
+    def select_wish_list(self):
+            """
+            Selects and clicks the wish list link in the right column of my account page.
+            """
+
+            try:
+                count = self.all_right_items.count()
+                for i in range(count):
+                    item = self.all_right_items.nth(i)
+                    item_voice_displayed = item.text_content()
+                    if item_voice_displayed and item_voice_displayed.strip() == "Wish List":
+                        item.click()
+                        return WishListPage(self.page)
+                print("Wish List link not found")
+            except Exception as e:
+                print(f"Error while selecting Wish List link: {e}")
+            raise
