@@ -5,6 +5,9 @@ openpyxl Faker python-slugify
 Step 2) Install playwright browsers with following command:
 playwright install
 
+Step 3) Install pytest playwright:
+pip install pytest-playwright
+
 pytest.ini is the file to control with tests must be executed. Every test has a marker so we can run only specific tests (grouping). To run from local env:  cmd line execute ---> pytest tests 
 and only sanity tests will execute (because uncommented in pytest.ini) and two workers are enable, so parallel execution will be performed. If commenting the workers line in pytest.ini, the execution will be in serial with chrome
 
