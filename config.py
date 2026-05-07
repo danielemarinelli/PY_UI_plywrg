@@ -7,7 +7,7 @@ class Config:
     product_name = "Nikon D300"
     product_quantity = "1"
     total_price = "$98.00"
-    #address book fields
+    #=========address book fields
     first_name="O.J."
     last_name="Simpson"
     address="287 Main Street"
@@ -22,7 +22,10 @@ class Config:
     zipcode1 = "40015"
     country1 = "United States"
     region1 = "Ohio"
-    # =========================
-    wish_list_product_search = "ipod"
+    # ========================
+    wish_list_product_search = "ipod"   # keep this variable 'ipod' for wish list test
     wish_list_product1="iPod Touch"
     wish_list_product2 = "iPod Classic"
+    total_price_prod_in_wish_list = "$244"
+    # =========================
+
