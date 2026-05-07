@@ -39,9 +39,7 @@ class WishListPage:
             all_row_data = rows.all()
             for row in all_row_data[1:]:  # slicing the table and staring from row 1, print only Product Name column
                 second_col = row.locator('td').nth(1).all_inner_texts()
-                #print(second_col)
                 for text in second_col:
-                    #print(text)
                     prod_list.append(text)  #list will contain the two products selected for wish_list
                 #print(prod_list)
             return prod_list
@@ -66,7 +64,6 @@ class WishListPage:
                     #print(price_text)
                     tot_price= tot_price + float(price_text.replace("$", ""))
                     prod_prices_list.append(price_text.replace("$",""))  # list will contain the two product prices in wish_list
-                #print(tot_price)
 
             tp = "$"+str(tot_price).replace(".0","")
             return tp
