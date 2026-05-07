@@ -5,7 +5,7 @@ Test Case: User WishList Functionality
 Test Steps
 ===========================================
 
-Test Case 1: Verify WishList Page       INSERT steps!!!!!!!!!!!!!!
+Test Case 1: Verify WishList Page
 --------------------------------------------------
 1. Open the application in the browser.
 2. Navigate to the "My Account" menu on the Home page.
@@ -18,9 +18,11 @@ Test Case 1: Verify WishList Page       INSERT steps!!!!!!!!!!!!!!
 9. Click on MyAccount link on the top page
 10. From the dropdown click on 'my account'
 11. Click on the "Wish List" link in the right sidebar.
-12. Verify that the products are displayed and check the unit price
-13. Remove the item from the wish list and verify the message displayed
-14. Click on the "Continue" button.
+12. Verify that the products selected are displayed
+13. Verify the total price of products is as expected
+14. Remove the item from the wish list and verify the message displayed
+15. Verify the empty wish list message
+16. Click on the "Continue" button.
 
 Expected Result:
 ----------------
@@ -82,8 +84,23 @@ def test_user_wishlist(page):
     my_acc.select_wish_list()
     # step 12:
     expect(wl.get_wish_list_page_header()).to_have_text("My Wish List")
+    products_selected_for_wl = wl.get_products_in_wishlist()
+    assert products_selected_for_wl == [Config.wish_list_product1, Config.wish_list_product2]
+    # step 13:
+    assert wl.get_total_price_products_in_wishlist() == Config.total_price_prod_in_wish_list
+    time.sleep(3)
+    # step 14:
+    wl.get_row_count()
+    wl.remove_products_from_wishlist()
+    time.sleep(3)
+    expect(wl.get_confirmation_msg_wish_list_updated_after_removing_products()).to_be_visible(timeout=2000)
+    # step 15:
+    expect(wl.empty_wish_list_msg()).to_have_text("Your wish list is empty.")
+    # step 16:
+    wl.user_perform_click_to_continue()
+    expect(my_acc.get_my_account_page_heading()).to_be_visible(timeout=2000)
 
-    time.sleep(5)
+
 
 
 
