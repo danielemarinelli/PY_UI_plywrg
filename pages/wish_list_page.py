@@ -90,8 +90,8 @@ class WishListPage:
         Removes products from wish list
         """
         try:
-            self.remove_product_icon.nth(1).click()
-            self.remove_product_icon.nth(1).click()
+            self.remove_product_icon.nth(0).click()
+            self.remove_product_icon.nth(0).click()
         except Exception as e:
             print(f"Error fetching row count table: {e}")
             raise
