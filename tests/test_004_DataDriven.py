@@ -14,9 +14,9 @@ json_data=read_json_data("testdata/logindata.json")   # reading data from .json 
 excel_data=read_excel_data("testdata/logindata.xlsx") # reading data from .xlsx file and returns it as List format
 
 
-#@pytest.mark.parametrize("testName,email,password,expected",json_data) #must specify the HEADERS/KEYS in the csv/json/xlsx file
+@pytest.mark.parametrize("testName,email,password,expected",json_data) #must specify the same HEADERS/KEYS in the csv/json/xlsx file
 #@pytest.mark.parametrize("testName,email,password,expected",csv_data)
-@pytest.mark.parametrize("testName,email,password,expected",excel_data)
+#@pytest.mark.parametrize("testName,email,password,expected",excel_data)
 @pytest.mark.datadriven   # datadriven custom markers are needed for grouping and are present in the pytest.ini file
 def test_login_data_driven(page,testName,email,password,expected):  # pass page + the 4 parameters to the function
     home_page = HomePage(page)
